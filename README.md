@@ -3,7 +3,7 @@
 
 > **this repository and website not officially**
 
-Labs meterials of Big Data Course, Faculty of computer and information scientists Ain Shams university 
+Labs meterials of Big Data Course,  Faculty of Computer and Information Science, Ain Shams University
 
 
 I rewrite the labs presentations from PPT to R I used :
