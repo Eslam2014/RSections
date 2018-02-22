@@ -1,0 +1,177 @@
+---
+title: "Lab 1: Introduction to R"
+output: html_notebook
+---
+
+
+> #### Objects
+
+* Objects should have names
+* Object Types: vector, matrix … etc.
+* Object Attributes
+    + mode: numeric, character, boolean
+    + length: number of elements in object
+* Object Values
+    + assign a value
+    + create a blank object
+
+> #### Naming Convention 
+
+* must start with a letter (A-Z or a-z)
+* can contain letters, digits (0-9), and/or periods “.” ex: Var1.1
+* case-sensitive
+    + mydata different from MyData
+* do not use underscore “_”
+
+> #### Assignment 
+
+**<-** used to indicate assignment
+
+```{r}
+x <- 1
+y <- 3
+z <- 4
+x*y*z
+```
+
+**Note:** Type determined automatically when variable is created with **"<-"** operator
+
+> #### Built-In Functions
+
+* actions can be performed on objects using functions
+* have arguments and options
+* provide a result
+* parentheses () are used to specify that a function is being called
+
+> Example Functions
+
+```{r}
+rep(1,10)
+```
+
+```{r}
+seq(2,6)
+```
+
+```{r}
+x <- c(2,0,0,4)
+```
+
+```{r}
+x * 4 
+```
+
+```{r}
+sqrt(x)
+```
+
+
+> #### Objects | Vectors 
+
+* A series of numbers 
+* Created with:
+    + c() to concatenate elements or sub-vectors 
+    + rep() to repeat elements or patterns 
+    + seq() or m:n to generate sequences 
+
+> Example
+
+```{r}
+X <- c(2,0,0,9)
+Y <- seq(2,5) #sequence of integers between 2 & 5
+Z <- rep(1,4) #repeat the number 1, 4 times 
+X+Y+Z 
+```
+
+
+```{r}
+x <- c (2,0,0,4)
+x [1] # Select the first element, equivalent to x[c(1)] 
+```
+
+```{r}
+x [-1] # Exclude the first element
+```
+
+```{r}
+ x [1] <- 3 ; x
+```
+
+```{r}
+x [-1] = 5 ; x
+```
+
+```{r}
+x<5
+```
+
+```{r}
+x [x<5] = 2 #Edits elements meeting condition
+```
+
+
+> #### Objects | Data Frames 
+
+* A group or collection of Vectors
+* Most of the time, when data is loaded, it will be organized in a data frame 
+
+> Example
+
+```{r}
+DF <- data.frame (h=c(150,160), w=c(65,72))
+DF
+```
+```{r}
+DF[1]
+```
+```{r}
+DF[2]
+```
+```{r}
+DF[1,]
+```
+```{r}
+DF[2,]
+```
+
+> #### Objects | Lists
+
+* Collections of related variables 
+* Similar to records in C 
+* Created with list function 
+
+```{r}
+point <- list(x = 1, y = 1) 
+```
+* Access to components follows similar rules as for data frames, the following all retrieve x: 
+
+```{r}
+point$x 
+point["x"] 
+point[1]
+point[-2] 
+```
+
+> #### repeat
+
+```{r}
+x <- 1
+repeat 
+{ x <- x+1; 
+if (x==50) 
+break;}
+x
+```
+> ##### while
+
+* while (expr_1) expr_2 While expr_1 is false, repeatedly evaluate expr_2 
+* break and next statements can be used within the loop
+
+```{r}
+while (x!=60)
+{ x <- x+1;}
+
+x
+```
+
+> ### Thank You & Good Luck 
