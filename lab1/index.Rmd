@@ -296,6 +296,11 @@ while (x!=60)
 x
 ```
 
+--- .segue .dark .nobackground
+
+## علم + عمل + أخلاق = حضارة
+
+
 ---
 
 ## Thanks for coming!

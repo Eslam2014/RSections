@@ -420,6 +420,11 @@ x
 ## [1] 60
 ```
 
+--- .segue .dark .nobackground
+
+## علم + عمل + أخلاق = حضارة
+
+
 ---
 
 ## Thanks for coming!
