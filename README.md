@@ -6,7 +6,7 @@
 Labs meterials of Big Data Course,  Faculty of Computer and Information Science, Ain Shams University
 
 
-I rewrite the labs presentations from PPT to R I used :
+I am rewriting the labs presentations from PPT to R I used :
 * R Notebook
 * slidify
 
@@ -33,4 +33,4 @@ install_github(pkgs, 'ramnathv', ref = 'dev')
     Lab 9: Data Mining In R cont.  (Time Series Modeling, Time Series Forecasting)
 
 
-### It contian's 1st lab Now , I'll keep it updated 
+### It contians the 1st lab Now but I'll keep it updated 
