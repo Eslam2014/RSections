@@ -143,7 +143,7 @@ $(document).ready(function () {
 </style>
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("index.Rmd");
+  window.initializeSourceEmbed("notebook.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
@@ -214,6 +214,9 @@ y &lt;- 3
 z &lt;- 4
 x*y*z</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEyXG4ifQ== -->
+<pre><code>[1] 12</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p><strong>Note:</strong> Type determined automatically when variable is created with <strong>“&lt;-”</strong> operator</p>
@@ -234,6 +237,9 @@ x*y*z</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVwKDEsMTApXG5gYGAifQ== -->
 <pre class="r"><code>rep(1,10)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAxIDEgMSAxIDEgMSAxIDEgMSAxXG4ifQ== -->
+<pre><code> [1] 1 1 1 1 1 1 1 1 1 1</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -241,6 +247,9 @@ x*y*z</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2VxKDIsNilcbmBgYCJ9 -->
 <pre class="r"><code>seq(2,6)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIgMyA0IDUgNlxuIn0= -->
+<pre><code>[1] 2 3 4 5 6</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -255,6 +264,9 @@ x*y*z</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCAqIDQgXG5gYGAifQ== -->
 <pre class="r"><code>x * 4 </code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICA4ICAwICAwIDE2XG4ifQ== -->
+<pre><code>[1]  8  0  0 16</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -262,6 +274,9 @@ x*y*z</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3FydCh4KVxuYGBgIn0= -->
 <pre class="r"><code>sqrt(x)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEuNDE0MjE0IDAuMDAwMDAwIDAuMDAwMDAwIDIuMDAwMDAwXG4ifQ== -->
+<pre><code>[1] 1.414214 0.000000 0.000000 2.000000</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <blockquote>
@@ -287,6 +302,9 @@ Y &lt;- seq(2,5) #sequence of integers between 2 &amp; 5
 Z &lt;- rep(1,4) #repeat the number 1, 4 times 
 X+Y+Z </code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICA1ICA0ICA1IDE1XG4ifQ== -->
+<pre><code>[1]  5  4  5 15</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -295,6 +313,9 @@ X+Y+Z </code></pre>
 <pre class="r"><code>x &lt;- c (2,0,0,4)
 x [1] # Select the first element, equivalent to x[c(1)] </code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDJcbiJ9 -->
+<pre><code>[1] 2</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -302,6 +323,9 @@ x [1] # Select the first element, equivalent to x[c(1)] </code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCBbLTFdICMgRXhjbHVkZSB0aGUgZmlyc3QgZWxlbWVudFxuYGBgIn0= -->
 <pre class="r"><code>x [-1] # Exclude the first element</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAgMCA0XG4ifQ== -->
+<pre><code>[1] 0 0 4</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -309,6 +333,9 @@ x [1] # Select the first element, equivalent to x[c(1)] </code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIHggWzFdIDwtIDMgOyB4XG5gYGAifQ== -->
 <pre class="r"><code> x [1] &lt;- 3 ; x</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDMgMCAwIDRcbiJ9 -->
+<pre><code>[1] 3 0 0 4</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -316,6 +343,9 @@ x [1] # Select the first element, equivalent to x[c(1)] </code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCBbLTFdID0gNSA7IHhcbmBgYCJ9 -->
 <pre class="r"><code>x [-1] = 5 ; x</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDMgNSA1IDVcbiJ9 -->
+<pre><code>[1] 3 5 5 5</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -323,6 +353,9 @@ x [1] # Select the first element, equivalent to x[c(1)] </code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueDw1XG5gYGAifQ== -->
 <pre class="r"><code>x&lt;5</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICBUUlVFIEZBTFNFIEZBTFNFIEZBTFNFXG4ifQ== -->
+<pre><code>[1]  TRUE FALSE FALSE FALSE</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -348,26 +381,61 @@ x [1] # Select the first element, equivalent to x[c(1)] </code></pre>
 <pre class="r"><code>DF &lt;- data.frame (h=c(150,160), w=c(65,72))
 DF</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVBRUTZDTUJBY2ltZ2cwWmo0RHB0b2ZBQUhIMkE0ZWEyQVFzU1dRQWsrejVlcExYUVRaUys3TzltWm5VbU81MzEwamdBdytETUc1cHZSZE1ERERLSHRUOERmREFmQXl2YjQ4b0t0T0FQVmlKL2lFVThJL2hNS3BIamtyUm5XZzVoVEwyam9KK2RobzNwT2xLWDc3NDM5WHpldFJFdTZCRWFaMElKZkc4TTMyM3RDV2FoYWwwb2FFclBKZ2duWmF5YkF1cFBXU2JaTmkwN2V0N3VEL2VEc3dObHoxbjVuKzVOOW5GYmd0T2E1dkpVeUovT1Z1T1NWVzFZbThwQ1kxMDBwTlVVeGFNdTEwb0x1b2xSVmhBemg4UDRDNmRFdnc4Z0JBQUE9In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["h"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["w"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"150","2":"65"},{"1":"160","2":"72"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuREZbMV1cbmBgYCJ9 -->
 <pre class="r"><code>DF[1]</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MSwibnJvdyI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVB5dzZDTUJBY0NtZ2drWkQ0SFpCbzRwMkRYK0NKYTNtb1JHd0psT2puK1dWb0M2M1I3bVYzSjdPek02ZGp2Zy96RUFDQjZ4RVFWNDZ5QXc0OEJLby9BWGM3QTBDa2lGbnhncXFzZ3E2L0E1L1JlejNJSWY1VnVWcXNvT2VQMURBMzgvL2xCYkhseXBZT3RseFlVVUhUY3kvdjVUWlpKMnZlaVlZemVVU1VjZC8yMGx0QVBETGxwRXJLNjhodXllNmdQbWc3MFBhMHRlL3NMRC9KVzJ2NVdtdFZzMHZEYW1PK3BVWGQ2aVdTa2VmRWFkYzNUSmdvRWgxU3dRVTF2TERrclVIbWNKZytNNEdLOEtjQkFBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["h"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"150"},{"1":"160"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuREZbMl1cbmBgYCJ9 -->
 <pre class="r"><code>DF[2]</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MSwibnJvdyI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVBRUTZDTUJBY0NtZ2drWkQ0RGtuMDRKbUREekNjdUZaQUpXSkxvQVJmajdiUUd1MWVkbmN5T3p1VG5mSkRtSWNBQ0Z5UGdMaHlsQjF3NENGUS9RVzQyeGtBSWtWTXp5bFVwUmwwL1IzNGpENnJYZzd4cjhwb3NZS09qNGxoYnViL3l3dGl5eFVON1cyNXNLU0NKdGRPM3N0dHNrN1d2QlUxWi9LSUtPTys3YVd6Z0hoZ3lrbTVLKzREZSt6MlIvVkIyNEcycDYxOVoyZjVTZDVheTlkYXE0cmRhbFlaOHcyOVZJMWVJaGw1VHB5MFhjMkVpU0xSUGhGY1VNTUxDOTRZWkE2SDZRUDlNeHdMcHdFQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["w"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"65"},{"1":"72"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuREZbMSxdXG5gYGAifQ== -->
 <pre class="r"><code>DF[1,]</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVB5dzZDTUJCY0NtaG9JaUh4T3lUUmkxY09mb0R4eExVOEZDSzJwSlRnNS9sbGFGdGFGWm8wblozdXpPNWNUdWtCcHhnQUVMZ2VBdVJLS0Y4QUJ6d0kxUHNFY0xlNkFTQlVSSks5d0p5cFBpZW1uQWw5U2g1bEowR2t4Y2F0c21CWXRBZWNEYkdWYlBTSHZuUFB2Q0dkOWJRa0xvZ2c4WlZMcmF6R2hXVE5XbEV6S2tWSXBmQVhZb2N2aUtpbmFvdGlsMWM5dmUvMlJ6WGh0ODcvYWwrTXBwbm9iYng4NDdVcTZhMm1wVjIrSVZuWm1DS1VjWFhhdU9VMUZUYUtaTHRZTUVGc0g4NVpZeGtkRHNZUGU4OUhFN1FCQUFBPSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["h"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["w"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"150","2":"65","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuREZbMixdXG5gYGAifQ== -->
 <pre class="r"><code>DF[2,]</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyVlBRUTZDTUJEY0Z0QkFJaUh4SFpEb3lhTUhYOENKYTRVcVJHd0psT0RyMGJaMkU4RmVkbmU2TXp1VFg0cGpWRVFBUU1IektWQlB0N29DRVBBaE5QVUY0TzN0QWtCc2dITUYrTDV6anVPQ0dBajI1SU51RWt0MmFqVTIwMm85N09XVUlXVm5QK3pOcFdiWnNnRTFFWXdxcGxoMjZ6VlhUL09Lc3BXZGFxVFFKR3BTQkNzeTZWZEFNZ3Jqb2tyTGVoU1A5SEF5RjV3ZDhtT04vTnVrYjZjVk9LME5GL2RHY0RUZnNpdHYzUkRydURadDF2V05VQmhGbzBPbXBHSzRGNVd5UmNTR2cva0RtV2ptbHJRQkFBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["h"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["w"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"160","2":"72","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <blockquote>
@@ -390,12 +458,33 @@ DF</code></pre>
 </ul>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9pbnQkeCBcbnBvaW50W1wieFwiXSBcbnBvaW50WzFdXG5wb2ludFstMl0gXG5gYGAifQ== -->
-<pre class="r"><code>point$x 
-point[&quot;x&quot;] 
-point[1]
-point[-2] </code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9pbnQkeCBcbmBgYCJ9 -->
+<pre class="r"><code>point$x </code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDFcbiJ9 -->
+<pre><code>[1] 1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9pbnRbXCJ4XCJdIFxuYGBgIn0= -->
+<pre class="r"><code>point[&quot;x&quot;] </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJHhcblsxXSAxXG4ifQ== -->
+<pre><code>$x
+[1] 1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9pbnRbMV1cbmBgYCJ9 -->
+<pre class="r"><code>point[1]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJHhcblsxXSAxXG4ifQ== -->
+<pre><code>$x
+[1] 1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9pbnRbLTJdIFxuYGBgIn0= -->
+<pre class="r"><code>point[-2] </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJHhcblsxXSAxXG4ifQ== -->
+<pre><code>$x
+[1] 1</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <blockquote>
@@ -411,6 +500,9 @@ if (x==50)
 break;}
 x</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDUwXG4ifQ== -->
+<pre><code>[1] 50</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <blockquote>
@@ -422,12 +514,14 @@ x</code></pre>
 </ul>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2hpbGUgKHghPTYwKVxueyB4IDwtIHgrMTt9XG5cbnhcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2hpbGUgKHghPTYwKVxueyB4IDwtIHgrMTt9XG54XG5gYGAifQ== -->
 <pre class="r"><code>while (x!=60)
 { x &lt;- x+1;}
-
 x</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDYwXG4ifQ== -->
+<pre><code>[1] 60</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <blockquote>

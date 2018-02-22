@@ -1,0 +1,88 @@
+---
+title       : Big Data
+subtitle    : First Section
+author      : ASU - FCIS
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Course Syllabus 
+
+--- 
+
+## Project description
+
+> - It is required to make use of the technologies studied during the course
+
+> - You should be showing  your data visualization, analytics, conclusions, and how do you implement the Big Data project Lifecycle (that you studied in lecture) 
+
+> - Further details will be available soon
+
+--- 
+## Introduction to R
+
+---
+## Lab Outcomes 
+
+> 1. What is R
+
+> 2. Invoke the R environment and examine the R workspace
+
+> 3. R Basics 
+
+---
+
+## What is R
+
+> - R is a free open source package based on the S language developed by Bell Labs
+
+> - Statistical Programming Language used to develop statistical software 
+
+> - Used by statisticians and data miners
+
+> - Many statistical functions are already built in
+
+---
+
+## Why R
+
+> 1. Implement statistical procedures
+
+> 2. Provide excellent graphics functionality 
+
+> 3. Excellent start for data analysis projects 
+
+---
+
+## Getting Started 
+
+> - Where to get R?
+> - Go to www.r-project.org
+> - Downloads: CRAN
+> - Set your Mirror: Anyone in the USA is fine.
+> - Select Windows 95 or later.
+> - Select base.
+> - Select R-3.2.3 for Windows 
+  - The others are if you are a developer and wish to change the source code.
+
+---
+## R Basics 
+
+> - Objects 
+> - Naming Convention
+> - Assignment 
+> - Built-In Functions
+> - Example Objects: 
+  - Vectors, Lists, Data Frames
+> - Control Statements 
+> - Functions  
+> - Workspace 
+
+
+
+
