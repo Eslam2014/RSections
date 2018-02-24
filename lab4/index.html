@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Big Data</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Big Data">
+  <meta name="author" content="FCIS - ASU">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Big Data</h1>
+    <h2>Lab 4</h2>
+    <p>FCIS - ASU<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="segue dark nobackground" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Graphics in R [Cont.]</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Last Lab</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>Introduction to Graphic in R </p></li>
+<li><p>Examples of commonly used Graphics functions</p></li>
+<li><p>Common options for customizing Graphs </p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Today’s Lab</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Other Plotting Functions 
+
+<ul>
+<li>Bar Plot</li>
+<li>Pie Chart</li>
+<li>Dot Plot</li>
+<li>Density Plot</li>
+</ul></li>
+<li>Data Visualization Modalities </li>
+<li>Practice </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Bar Plot | Vector</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Create barplots with the barplot(height) function, where height is a vector or matrix. </li>
+<li>If height is a vector, the values determine the heights of the bars in the plot.</li>
+<li>Need to be based on counts, frequencies.</li>
+<li><p>You can create bar plots that represent means, medians, standard deviations, etc.
+Use the <code>aggregate( )</code> function and pass the results to the barplot( ) function.</p></li>
+<li><p>names.arg: a vector of names to be plotted below each bar. </p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Bar Plot | Practice 1</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>counts &lt;- table(ChickWeight$weight)
+#Creates a table with two columns, weight value and count
+barplot (counts, main= &#39;Weight Distribution&#39;)
+
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">counts &lt;- table(ChickWeight$weight)
+#Creates a table with two columns, weight value and count
+barplot (counts, main= &#39;Weight Distribution&#39;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Bar Plot | Practice 2</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>I want to create a barplot of the average weight grouped per day for the ChickWeight data set.</p>
+
+<pre><code class="r">AvgWeightPerDay &lt;- aggregate(ChickWeight[,1],list(ChickWeight$Time), mean)
+AvgWeightPerDay
+</code></pre>
+
+<pre><code>##    Group.1         x
+## 1        0  41.06000
+## 2        2  49.22000
+## 3        4  59.95918
+## 4        6  74.30612
+## 5        8  91.24490
+## 6       10 107.83673
+## 7       12 129.24490
+## 8       14 143.81250
+## 9       16 168.08511
+## 10      18 190.19149
+## 11      20 209.71739
+## 12      21 218.68889
+</code></pre>
+
+<pre><code>barplot(AvgWeightPerDay$x, names.arg= AvgWeightPerDay$Group.1, main= &quot;Average Weight Per Day&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h4>Bar Plot | Practice 2</h4>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">barplot(AvgWeightPerDay$x, names.arg= AvgWeightPerDay$Group.1,
+        main= &quot;Average Weight Per Day&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Bar Plot | Matrix</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>If height is a matrix and the option beside=FALSE then each bar of the plot corresponds to a column of height, with the values in the column giving the heights of stacked “sub-bars”.</p></li>
+<li><p>If legend controls if you want to show the guiding table is the table at the top right. T means true. </p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Bar Plot | Practice 3</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>data(VADeaths) 
+VADeaths 
+barplot(VADeaths,col=rainbow(5),legend=T)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h4>Bar Plot | Practice 3</h4>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h4>Bar Plot | Practise 3</h4>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">barplot(VADeaths,col=rainbow(5), legend=T,beside=T)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Dot Plots</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Create dotplots with the dotchart (x, labels=) function, where x is a numeric vector and labels is a vector of labels for each point. </p></li>
+<li><p>You can add a groups= option to designate a factor specifying how the elements of x are grouped. </p></li>
+<li><p>cex controls the size of the labels.                                 </p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Dot Plots | Practice 5</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>data (mtcars)
+mtcars
+dotchart(mtcars$mpg, groups=mtcars$gear, labels = row.names(mtcars), cex =0.7, 
+main = &quot;Miles Per Gallon&quot;, xlab= &quot;MPG&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h4>Dot Plots | Practice 5</h4>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Density Plots</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Kernal density plots are usually a much more effective way to view the distribution of a variable. </p></li>
+<li><p>It is a way to estimate the probability density distribution of a random variable. </p></li>
+<li><p>Create the plot using plot (density(x)) where x is a numeric vector.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h4>Density Plots</h4>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">hist(mtcars$mpg)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h4>Density Plots</h4>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(density(mtcars$mpg))
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Density Plots | Practice 6</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>hist(mtcars$mpg, prob = TRUE, col=&quot;grey&quot;)
+# prob=TRUE for probabilities not counts
+lines(density(mtcars$mpg), col=&quot;blue&quot;, lwd=2)
+# plot a probability density distribution
+lines(density(mtcars$mpg, adjust=2), lty=&quot;dotted&quot;, col=&quot;darkgreen&quot;, lwd=2)
+# add another &quot;smoother&quot; density
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h4>Density Plots | Practice 6</h4>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>Pie Charts</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Pie charts are created with the function <code>pie(x, labels=)</code> where <code>x</code> is a <code>non-negative numeric vector</code>
+indicating the area of each slice and <code>labels= notes</code> a character vector of names for the slices.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>Pie Chart| Practice 6</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>slices &lt;- c(10, 12,4, 16, 8)
+lbls &lt;- c(&quot;US&quot;, &quot;UK&quot;, &quot;Australia&quot;, &quot;Germany&quot;, &quot;France”)
+pct &lt;- slices/sum(slices)*100
+# calculates percentile
+lbls &lt;- paste(lbls, pct) 
+# add percent to labels (
+lbls &lt;- paste(lbls,&quot;%&quot;,sep=&quot;&quot;) 
+# ad % to labels 
+pie(slices, labels = lbls, col= rainbow (length(lbls)), main=&quot;Pie Chart of Countries&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h4>Pie Chart| Practice 6</h4>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h2>Plotting functions | Practice 7</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>F1 &lt;- function (n=20)
+{x1&lt;- rnorm(n)
+par (mfrow = c(3,2))
+plot(x1, type= &quot;p&quot;, main = “type: points”)
+plot(x1, type= &quot;l&quot;, main = “type: lines”)
+plot(x1, type= &quot;b&quot;, “main = “type: both”)
+plot(x1, type= &quot;o&quot;, main = “type: over plot”) 
+plot(x1, type= &quot;h&quot;, main = “type: histogram”)
+lot(x1, type= &quot;s&quot;, main = “type: steps”)}
+F1()
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h4>Plotting functions | Practice 7</h4>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <hgroup>
+    <h2>Practise</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>f1&lt;- function(){
+x1&lt;- rep(1:5, times=5)
+#1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5
+y1&lt;- rep(1:5,each=5)
+#1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,5,5,5,5,5
+plot(x1,y1,pch=1:25, cex =3, bg= &quot;red&quot;, main=&quot;Data symbols 1:25&quot;)}
+f1()
+</code></pre>
+
+<p><code>Note:</code> 
+Cex=n plots a figure n times the default size
+Pch denotes plot symbol</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-27" style="background:;">
+  <hgroup>
+    <h4>Practice</h4>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
+  <hgroup>
+    <h2>Practice</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>x1&lt;- rep(1:5, times=5)
+y1&lt;- rep(1:5,each=5)
+plot(x1,y1, pch =3, lwd= x1, cex=y1, xlim=c(0,5), ylim=c(0,5))
+
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <hgroup>
+    <h4>Practice</h4>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>Practice</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>x&lt;- rep(1:5, times=5)
+y&lt;- rep(1:5, each= 5)
+plot(x,y,pch=3,lwd=x, cex=y, col = 1:25, xlim = c(0,5), ylim= c(0,5), 
+main= &quot;R plotting symbols: size and width&quot;, xlab=&quot;Width(lwd)&quot;, ylab = &quot;Size (cex)&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-31" style="background:;">
+  <hgroup>
+    <h4>Practice</h4>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-15-1.png" alt="plot of chunk unnamed-chunk-15"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>Practice</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>F2&lt;- function()
+ {
+x &lt;- 1:10; y= rep(1,10)
+plot(y,x,xlab=&quot;x&quot;, ylab =&quot;y&quot;, xlim = c(1,10), ylim = c(1,6.5), lty=1, main= &quot;Linetypes&quot;)
+for(i in 1:6) {lines(x,y=rep(i,10),lty=i)}
+linenames &lt;- paste(&quot;Type&quot;, 1:6, &quot;:&quot;, c(&quot;solid&quot;, &quot;dashed&quot;, &quot;dotted&quot;, &quot;dotdash&quot;, &quot;longdash&quot;, &quot;twodash&quot;))
+text(2,(1:6)+0.25,labels=linenames)
+}
+F2()
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-33" style="background:;">
+  <hgroup>
+    <h4>Practice</h4>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-34" style="background:;">
+  <hgroup>
+    <h2>Practice</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>plot(1:10, 1:10,type=&quot;n&quot;)
+windowsFonts
+(A=windowsFont(&quot;Arial black&quot;),
+B=windowsFont(&quot;Bookman Old Style&quot;),
+C=windowsFont(&quot;Comic Sans MS&quot;),
+D=windowsFont(&quot;Symbol&quot;))
+plot(1:10, 1:10,type=&quot;n&quot;)
+text(3,3, &quot;Hello world default&quot;)
+text(4,4, family =&quot;A&quot;, &quot;Hello world from arial black&quot;)
+text(5,5, family =&quot;B&quot;, &quot;Hello world from Bookman Old Style&quot;)
+text(6,6, family =&quot;C&quot;, &quot;Hello world from Comin Sans MS&quot;)
+text(7,7, family =&quot;D&quot;, &quot;Hello world from Symbol&quot;)
+
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-35" style="background:;">
+  <hgroup>
+    <h4>Practice</h4>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue dark nobackground" id="slide-36" style="background:;">
+  <hgroup>
+    <h2>علم + عمل + أخلاق = حضارة</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-37" style="background:;">
+  <hgroup>
+    <h2>Thanks for coming!</h2>
+  </hgroup>
+  <article data-timings="">
+    <div align="center">
+<img class="decoded" src="graph.jpeg" width=80% height=450>
+</div>
+
+<p><br>
+<em>Eslam Ali</em> <code>Data Scientist</code></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Graphics in R [Cont.]'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Last Lab'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Today’s Lab'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Bar Plot | Vector'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Bar Plot | Practice 1'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='NA'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Bar Plot | Practice 2'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Bar Plot | Practice 2'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Bar Plot | Matrix'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Bar Plot | Practice 3'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Bar Plot | Practice 3'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Bar Plot | Practise 3'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Dot Plots'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Dot Plots | Practice 5'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Dot Plots | Practice 5'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Density Plots'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Density Plots'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Density Plots'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Density Plots | Practice 6'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Density Plots | Practice 6'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Pie Charts'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Pie Chart| Practice 6'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Pie Chart| Practice 6'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Plotting functions | Practice 7'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Plotting functions | Practice 7'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Practise'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Practice'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Practice'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Practice'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Practice'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Practice'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Practice'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Practice'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Practice'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Practice'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='علم + عمل + أخلاق = حضارة'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Thanks for coming!'>
+         37
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
