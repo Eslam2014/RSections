@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Big Data</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Big Data">
+  <meta name="author" content="FCIS - ASU">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Big Data</h1>
+    <h2>Third Section</h2>
+    <p>FCIS - ASU<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue dark nobackground" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Graphics in R</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Today’s Lab</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Introduction to Graphics in R </li>
+<li>Examples of commonly used graphics functions</li>
+<li>Common options for customizing graphs </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Computer Graphics</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Graphics are important for conveying important features of the data</li>
+<li>They can be used to examine
+
+<ul>
+<li>Marginal distributions*</li>
+<li>Relationships between variables</li>
+<li>Summary of very large data</li>
+</ul></li>
+<li>Important complement to many statistical and computational techniques</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Example Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>To view available datasets, type:</p>
+
+<pre><code class="r">data()
+</code></pre>
+
+<p>To load a dataset into memory, type data(name of data set)</p>
+
+<pre><code>data(ChickWeight) 
+</code></pre>
+
+<p>To view the loaded dataset type its name: </p>
+
+<pre><code>ChickWeight 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>The Data File</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>##   weight Time Chick Diet
+## 1     42    0     1    1
+## 2     51    2     1    1
+## 3     59    4     1    1
+## 4     64    6     1    1
+## 5     76    8     1    1
+## 6     93   10     1    1
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Summary of the Data File</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">summary(ChickWeight)
+</code></pre>
+
+<pre><code>##      weight           Time           Chick     Diet   
+##  Min.   : 35.0   Min.   : 0.00   13     : 12   1:220  
+##  1st Qu.: 63.0   1st Qu.: 4.00   9      : 12   2:120  
+##  Median :103.0   Median :10.00   20     : 12   3:120  
+##  Mean   :121.8   Mean   :10.72   10     : 12   4:118  
+##  3rd Qu.:163.8   3rd Qu.:16.00   17     : 12          
+##  Max.   :373.0   Max.   :21.00   19     : 12          
+##                                  (Other):506
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Graphics in R</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p><code>Plot()</code> is the main graphing function</p></li>
+<li><p>Automatically produces simple plots for vectors, functions or data frames</p></li>
+<li><p>Many useful customization options…</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Plotting a Vector</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>plot(v) will print the elements of the vector v according to their index</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <article data-timings="">
+    <pre><code class="r"># Plot weight for each observation
+plot(ChickWeight$weight)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <article data-timings="">
+    <pre><code class="r"># Plot weight against their ranks
+plot(sort(ChickWeight$weight))
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Common Parameters for plot()</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Specifying labels:
+
+<ul>
+<li>main – provides a title</li>
+<li>xlab – label for the x axis</li>
+<li>ylab – label for the y axis</li>
+</ul></li>
+<li>Specifying range limits:
+
+<ul>
+<li>ylim – 2-element vector gives range for y axis</li>
+<li>xlim – 2-element vector gives range for x axis</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>A Labeled Plot</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(sort(ChickWeight$weight), ylim = c(50,200), ylab = &quot;Weight&quot;, xlab = &quot;Rank&quot;, main = &quot;Distribution of Weights&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h1>Plotting Two Vectors</h1>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>plot() can pair elements from 2 vectors to produce x-y coordinates</li>
+<li>You can exclude vectors using:
+<code>
+plot(datasetname[-c(1,2)])
+</code></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Plotting Two Vectors</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(ChickWeight$Diet, ChickWeight$weight, xlab = &quot;diet&quot;, ylab = &quot;Weight&quot;,
+     main = &#39;Type of Diet Effect on Weight&#39;, col = &quot;blue&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Plotting Contents of a Dataset</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(ChickWeight)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Plotting Contents of a Dataset</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(ChickWeight[-c(1)])
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Histograms</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>A diagram consisting of rectangles whose area is proportional to the frequency of a variable</li>
+<li>The parameter breaks is key:
+
+<ul>
+<li>Specifies the number of categories to plot</li>
+<li>Specifies the breakpoints for each category</li>
+</ul></li>
+<li>The xlab, ylab, xlim, ylim options work as expected</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Histograms</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">hist(ChickWeight$weight, col = &quot;lightblue&quot;, xlab = &quot;Weight&quot;, main = &quot;Weight Histogram&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>Histograms With Breaks</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">hist(ChickWeight$weight, col = &quot;lightblue&quot;, xlab = &quot;Weight&quot;, 
+     main = &quot;Weight Histogram&quot;, breaks = seq (0,400, by=10) )
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>Boxplots</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Generated by the boxplot() function</li>
+<li>Draws plot summarizing
+
+<ul>
+<li>Median</li>
+<li>Quartiles (Q1, Q3)*</li>
+<li>Outliers – by default, observations more than 1.5 * (Q1 – Q3) distant from nearest quartile</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">boxplot(ChickWeight, col = rainbow(6), ylab = &quot;ChickWeight Boxplot&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>Boxplot for Weight</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p><code>rug()</code> can add a tick for each observation to the side of a <code>boxplot()</code> and other plots.</p></li>
+<li><p>The side parameter specifies where tick marks are drawn.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">boxplot(ChickWeight$weight, col = rainbow(6), ylab = &quot;ChickWeight Boxplot&quot;)
+rug(ChickWeight$weight,side=2)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>Customizing Plots</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>R provides a series of functions for adding text, lines and points to a plot</li>
+<li>We will illustrate some useful ones, but look at demo(graphics) for more examples</li>
+<li>Type <code>&lt;Return&gt;</code> or Press enter for more</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <hgroup>
+    <h2>Drawing on a plot</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>To add additional data use
+
+<ul>
+<li>points(x,y)</li>
+<li>lines(x,y)</li>
+</ul></li>
+<li>For freehand drawing use
+
+<ul>
+<li>polygon()</li>
+<li>rect()</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-27" style="background:;">
+  <hgroup>
+    <h2>Text Drawing</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Two commonly used functions:
+
+<ul>
+<li>text() – writes inside the plot region, could be used to label datapoints</li>
+<li>mtext() – writes on the margins</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
+  <hgroup>
+    <h2>Plotting Two Data Series</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>x &lt;- seq(0,2*pi, by = 0.1)
+y &lt;- sin(x)
+y1 &lt;- cos(x)
+plot(x,y, col = &quot;green&quot;, type = &quot;l&quot;, lwd = 3)
+lines(x,y1, col = &quot;red&quot;, lwd = 3)
+mtext(&quot;Sine and Cosine Plot&quot;, side = 3, line = 1)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>Adding a Label &amp; Rectangle</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>rect(0,-1,2,0.5)
+text(1,0.6, &quot;label here&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-15-1.png" alt="plot of chunk unnamed-chunk-15"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-31" style="background:;">
+  <hgroup>
+    <h2>Plotting Functions</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>f &lt;- function(x) x * (x + 1) / 2
+x &lt;- 1:20
+y &lt;- f(x)
+plot(x, y)
+mtext(&quot;Plotting the expression&quot;, side = 3, line = 2.5)
+mtext(expression(y == sum(i,1,x,i)), side = 3, line = 0)
+mtext(&quot;The first variable&quot;, side = 1, line = 3)
+mtext(&quot;The second variable&quot;, side = 2, line = 3)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-32" style="background:;">
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-33" style="background:;">
+  <hgroup>
+    <h2>Symbolic Math Expressions</h2>
+  </hgroup>
+  <article data-timings="">
+    <iframe src='big_operators.png' width=800px height=250px>
+</iframe> 
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-34" style="background:;">
+  <hgroup>
+    <h2>Multiple Plots on a Page</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Set the mfrow or mfcol options</li>
+<li>Take 2 dimensional vector as an argument
+
+<ul>
+<li>The first value specifies the number of rows</li>
+<li>The second specifies the number of columns</li>
+</ul></li>
+<li>The 2 options differ in the order individual plots are printed</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-35" style="background:;">
+  <hgroup>
+    <h2>Multiple Plots on a Page</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">par(mfcol = c(3,1))
+hist(ChickWeight  $weight*1000, breaks = 10, main = &quot;Weight (in mg)&quot;, xlab = &quot;Weight&quot;)
+hist(ChickWeight$weight, breaks = 10, main = &quot;Weight (in g)&quot;, xlab = &quot;Weight&quot;)
+hist(ChickWeight$weight/1000,breaks = 10, main = &quot;Weight (in kg)&quot;, xlab = &quot;Weight&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-36" style="background:;">
+  <hgroup>
+    <h2>Saving R Plots</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>R usually generates output to the screen</li>
+<li>R can also save its graphics output in a file that you can distribute or include in a document prepared with Word or <code>LATEX</code> . From <code>File -&gt; Save As</code></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-37" style="background:;">
+  <hgroup>
+    <h2>Practice</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Plot two graphs as follows:</h3>
+
+<ul>
+<li><p>Plot1: Histogram of ChickWeight weight vector (in kgs instead of grams). Having main label “Weight in Kgs” and 8 breaks.  </p></li>
+<li><p>Plot 2: the box plot of the Weight vector in Kgs in red color.
+Two plots in the same row</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-38" style="background:;">
+  <hgroup>
+    <h2>Solution</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">hist(ChickWeight$weight/100, breaks=20, main = &quot;Weight (in kg)&quot;, xlab = &quot;Weight&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-18-1.png" alt="plot of chunk unnamed-chunk-18"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-39" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">boxplot(ChickWeight$weight/100, col = &quot;red&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue dark nobackground" id="slide-40" style="background:;">
+  <hgroup>
+    <h2>علم + عمل + أخلاق = حضارة</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-41" style="background:;">
+  <hgroup>
+    <h2>Thanks for coming!</h2>
+  </hgroup>
+  <article data-timings="">
+    <div align="center">
+<img class="decoded" src="original.png" width=80% height=450>
+</div>
+
+<p><br>
+<em>Eslam Ali</em> <code>Data Scientist</code></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Graphics in R'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Today’s Lab'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Computer Graphics'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Example Data'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='The Data File'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Summary of the Data File'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Graphics in R'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Plotting a Vector'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='NA'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='NA'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Common Parameters for plot()'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='A Labeled Plot'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Plotting Two Vectors'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Plotting Two Vectors'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Plotting Contents of a Dataset'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Plotting Contents of a Dataset'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Histograms'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Histograms'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Histograms With Breaks'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Boxplots'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='NA'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Boxplot for Weight'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='NA'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Customizing Plots'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Drawing on a plot'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Text Drawing'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Plotting Two Data Series'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='NA'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Adding a Label &amp; Rectangle'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Plotting Functions'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='NA'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Symbolic Math Expressions'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Multiple Plots on a Page'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Multiple Plots on a Page'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='Saving R Plots'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Practice'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Solution'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='NA'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='علم + عمل + أخلاق = حضارة'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='Thanks for coming!'>
+         41
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
