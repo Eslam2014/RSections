@@ -22,8 +22,8 @@ install_github(pkgs, 'ramnathv', ref = 'dev')
 
 > ### Part I: R Environment
 * Lab 1: Introduction to R [Presentation](https://eslam2014.github.io/RSections/lab1) | [Notebook](https://eslam2014.github.io/RSections/lab1/notebook.nb)
-* Lab 2: Data Cleaning in R
-* Lab 3: Graphics in R
+* Lab 2: Data Cleaning in R [Presentation](https://eslam2014.github.io/RSections/lab2)
+* Lab 3: Graphics in R [Presentation](https://eslam2014.github.io/RSections/lab3)
 * Lab 4: Graphics in R (cont.)
 
 > ### Part II: Data Analytics using R
