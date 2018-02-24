@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Big Data</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Big Data">
+  <meta name="author" content="ASU - FCIS">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Big Data</h1>
+    <h2>Second Section</h2>
+    <p>ASU - FCIS<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Lab Agenda</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Accessing Data Frames with logical And\OR </li>
+<li>Control Statements </li>
+<li>Functions<br></li>
+<li>Workspace </li>
+<li>Writing and Reading from files</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Data Frame – cont--</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">x &lt;- data.frame(&quot;var1&quot;=sample(1:5),&quot;var2&quot;=sample(6:10),&quot;var3&quot;=sample(11:15))
+x
+</code></pre>
+
+<pre><code>##   var1 var2 var3
+## 1    4    9   14
+## 2    3    8   15
+## 3    1    6   11
+## 4    2    7   12
+## 5    5   10   13
+</code></pre>
+
+<pre><code class="r">x$var2[c(1,3)] = NA
+x
+</code></pre>
+
+<pre><code>##   var1 var2 var3
+## 1    4   NA   14
+## 2    3    8   15
+## 3    1   NA   11
+## 4    2    7   12
+## 5    5   10   13
+</code></pre>
+
+<hr>
+
+<h2>Logical And , OR</h2>
+
+<pre><code class="r">x[x$var1 &lt;= 3 &amp; x$var3 &gt;11,]
+</code></pre>
+
+<pre><code>##   var1 var2 var3
+## 2    3    8   15
+## 4    2    7   12
+</code></pre>
+
+<pre><code class="r">x[x$var1 &lt;= 3 | x$var3 &gt;11,]
+</code></pre>
+
+<pre><code>##   var1 var2 var3
+## 1    4   NA   14
+## 2    3    8   15
+## 3    1   NA   11
+## 4    2    7   12
+## 5    5   10   13
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Control Statements</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li><p>if ... else ... </p></li>
+<li><p>for loops </p></li>
+<li><p>next, break statements </p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>If … else …</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p><code>If</code> (expr_1) expr_2 <code>else</code> expr_3 The first expression should return a single logical value</p></li>
+<li><p>Operators <code>&amp;&amp;</code> or <code>||</code> may be used </p></li>
+<li><p>Conditional execution of code </p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>If … else …</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">x&lt;-3
+if (x != 4){ x &lt;- x+4
+} else {x}
+x
+</code></pre>
+
+<pre><code>## [1] 7
+</code></pre>
+
+<p><code>Search why this is wrong?!!</code></p>
+
+<pre><code class="r">x&lt;-3
+if (x != 4){x &lt;- x+4}
+else {x}
+</code></pre>
+
+<pre><code>## Error: &lt;text&gt;:3:1: unexpected &#39;else&#39;
+## 2: if (x != 4){x &lt;- x+4}
+## 3: else
+##    ^
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>for</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>Loops</code> are used in programming to repeat a specific block of code.</li>
+<li>A <code>for loop</code> is used to iterate over a vector in <em>R</em> programming.</li>
+</ul>
+
+<pre><code class="r">x&lt;-0
+for (i in 1:20) 
+{ x &lt;- x + 1}
+x
+</code></pre>
+
+<pre><code>## [1] 20
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Function Definition</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>expression</p>
+
+<pre><code>name &lt;- function(arg1, arg2, ...)  
+</code></pre></li>
+<li><p>Arguments can be assigned default values: <code>arg_name = expression</code></p></li>
+<li><p>Return value is the last evaluated expression or can be set explicitly with <code>return()</code> </p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Function Examples</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">square &lt;- function(x = 10) {x * x} 
+square()
+</code></pre>
+
+<pre><code>## [1] 100
+</code></pre>
+
+<pre><code class="r">square(2)
+</code></pre>
+
+<pre><code>## [1] 4
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h3>Function Examples cont.</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">intsum &lt;- function(from=1, to=10) { sum &lt;- 0 ; for (i in from:to) sum &lt;- sum + i; sum;}
+intsum(3) # Evaluates sum from 3 to 10 
+</code></pre>
+
+<pre><code>## [1] 52
+</code></pre>
+
+<pre><code class="r">intsum(to=3) # Evaluates sum from 1 to 3 ... 
+</code></pre>
+
+<pre><code>## [1] 6
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Return in Functions</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">intsum &lt;- function (from=1, to=10) 
+{ sum &lt;- 0 ; 
+for (i in from:to) 
+sum &lt;- sum + i;
+return(sum); }
+
+intsum()
+</code></pre>
+
+<pre><code>## [1] 55
+</code></pre>
+
+<pre><code class="r">s &lt;- intsum()
+s
+</code></pre>
+
+<pre><code>## [1] 55
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Some Notes on Functions</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>You can print the arguments for a function using <code>args()</code> command </li>
+</ul>
+
+<pre><code class="r">args(intsum) 
+</code></pre>
+
+<pre><code>## function (from = 1, to = 10) 
+## NULL
+</code></pre>
+
+<ul>
+<li>You can print the contents of a function by typing only its name, without the () </li>
+<li>You can edit a function using
+<code>
+n_intsum &lt;- edit(intsum) 
+</code></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Debugging Functions</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Toggle debugging for a function with <code>debug()/undebug()</code> command </li>
+<li>With debugging enabled, R steps through function line by line </li>
+</ul>
+
+<pre><code class="r">debug(intsum) 
+intsum(10)
+</code></pre>
+
+<pre><code>## debugging in: intsum(10)
+## debug at &lt;text&gt;#1: {
+##     sum &lt;- 0
+##     for (i in from:to) sum &lt;- sum + i
+##     return(sum)
+## }
+## debug at &lt;text&gt;#2: sum &lt;- 0
+## debug at &lt;text&gt;#3: for (i in from:to) sum &lt;- sum + i
+## debug at &lt;text&gt;#3: sum &lt;- sum + i
+## debug at &lt;text&gt;#5: return(sum)
+## exiting from: intsum(10)
+</code></pre>
+
+<pre><code>## [1] 10
+</code></pre>
+
+<ul>
+<li>Use <code>print()</code> to inspect variables along the way </li>
+<li>Press <code>&lt;enter&gt;</code> to proceed to next line </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Workspace</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>During an R session, all objects are stored in a temporary, working memory</li>
+<li>list objects
+<code>
+ls()
+</code></li>
+<li>remove objects
+<code>
+rm(name of the object you want to delete)
+</code></li>
+<li>objects that you want to access later must be saved in a “workspace”</li>
+<li>from the menu bar: <code>File-&gt;save workspace</code></li>
+<li>from the command line: <code>save(x,file=“MyData.Rdata”)</code></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Prepare Working Directory</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>getwd
+</code></pre>
+
+<pre><code>setwd(“path of the data set”)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Practice</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Create a Function that takes two arguments (x, y) and returns the “X” to the power of “Y”
+ex: Power(2,3) returns 8 default return value is 1. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h4>Answer</h4>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">Exp &lt;- function(x=1,y=1) 
+{ z=1; for(i in 1:y) z&lt;-z*x; return(z);}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Data Import and Export with R</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Read data from and write data to
+
+<ul>
+<li>Txt Files</li>
+<li>CSV files</li>
+<li>EXCEL files</li>
+<li>ODBC databases</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Practice : Read and Write Data from csv file</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">var1 &lt;- 1:5
+var2 &lt;- (1:5)/10
+var3 &lt;- c(&quot;R&quot;,&quot;and&quot;,&quot;Data Mining&quot;,&quot;Examples&quot;,&quot;Case Studies&quot;)
+df1 &lt;- data.frame(var1,var2,var3)
+names(df1) &lt;- c(&#39;VarInt&#39;,&#39;VarReal&#39;,&#39;VarChar&#39;)
+# save to a csv file
+write.csv(df1,&#39;dummmyData.csv&#39;,row.names = FALSE)
+# read from a csv file
+df2 &lt;- read.csv(&#39;dummmyData.csv&#39;)
+print(df2)
+</code></pre>
+
+<pre><code>##   VarInt VarReal      VarChar
+## 1      1     0.1            R
+## 2      2     0.2          and
+## 3      3     0.3  Data Mining
+## 4      4     0.4     Examples
+## 5      5     0.5 Case Studies
+</code></pre>
+
+<p><code>Note</code>: Check the working directory and ensure that you have write access to that directory. 
+You can check this with getwd() ; </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Practice: Read and Write Data from Excel file</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>install.packages(“xlsx”)
+</code></pre>
+
+<pre><code class="r">library(xlsx)
+</code></pre>
+
+<pre><code>## Loading required package: rJava
+</code></pre>
+
+<pre><code>## Loading required package: xlsxjars
+</code></pre>
+
+<pre><code class="r">write.xlsx(df2, &#39;dummmyData.xlsx&#39;, sheetName = &quot;sheet1&quot;, row.names = F)
+df3 &lt;- read.xlsx(&#39;dummmyData.xlsx&#39;, sheetName = &quot;sheet1&quot;)
+df3
+</code></pre>
+
+<pre><code>##   VarInt VarReal      VarChar
+## 1      1     0.1            R
+## 2      2     0.2          and
+## 3      3     0.3  Data Mining
+## 4      4     0.4     Examples
+## 5      5     0.5 Case Studies
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>Read from Database</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Package <code>RODBC</code>: provides connection to <code>ODBC</code> databases.</p></li>
+<li><p>Function <code>odbcConnect()</code>: sets up a connection to database</p></li>
+<li><p><code>sqlQuery()</code>: sends an SQL query to the database</p></li>
+<li><p><code>odbcClose()</code> closes the connection.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>Practice: Read from Database</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>library(RODBC)
+db &lt;- odbcConnect(dsn = &quot;servername&quot;, uid = &quot;userid&quot;,pwd=&#39;password&#39;)
+sql &lt;- &quot;SELECT * FROM lib.table WHERE ...&quot;
+myData &lt;- sqlQuery(db, sql, errors=TRUE)
+odbcClose(db)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue dark nobackground" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>علم + عمل + أخلاق = حضارة</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>Thanks for coming!</h2>
+  </hgroup>
+  <article data-timings="">
+    <div align="center">
+<img class="decoded" src="clean_your_data.jpg" width=80% height=400>
+</div>
+
+<p><br>
+<em>Eslam Ali</em> <code>Data Scientist</code></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Lab Agenda'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Data Frame – cont--'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Control Statements'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='If … else …'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='If … else …'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='for'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Function Definition'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Function Examples'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Function Examples cont.'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Return in Functions'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Some Notes on Functions'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Debugging Functions'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Workspace'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Prepare Working Directory'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Practice'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Answer'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Data Import and Export with R'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Practice : Read and Write Data from csv file'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Practice: Read and Write Data from Excel file'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Read from Database'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Practice: Read from Database'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='علم + عمل + أخلاق = حضارة'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Thanks for coming!'>
+         23
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
