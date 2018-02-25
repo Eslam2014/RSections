@@ -33,4 +33,4 @@ install_github(pkgs, 'ramnathv', ref = 'dev')
     Lab 9: Data Mining In R cont.  (Time Series Modeling, Time Series Forecasting)
 
 
-### It contians the 1st lab Now but I'll keep it updated 
+### It contians the 4 labs Now but I'll keep it updated 
