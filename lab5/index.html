@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Big Data</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Big Data">
+  <meta name="author" content="FCIS - ASU">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Big Data</h1>
+    <h2>Lab 5</h2>
+    <p>FCIS - ASU<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="segue dark nobackground" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Hypothesis Tests and ANOVA</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Agenda</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>General R commands</li>
+<li>Data Import and Export with R</li>
+<li>Define problem – Analysis of Variance (ANOVA) </li>
+<li>Perform a Hypothesis Test with manual calculations</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>R studio | New Commands</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>head(dataframe, n=x)                                
+#Prints the first n lines of a table 
+tail(dataframe, n=x)
+#Prints the last n lines of a table
+</code></pre>
+
+<h4>Try it!</h4>
+
+<pre><code>head (ChickWeight, n=10)
+tail (ChickWeight, n=10)
+summary (Chickweight)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>R studio | Practice</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Create a copy of the chickweight without the weight column.</p>
+
+<pre><code>nlab1 &lt;- ChickWeight[,2:4]
+#Or 
+nlab1 &lt;- ChickWeight[,-1]
+#Or 
+time &lt;- ChickWeight $Time
+chick &lt;- ChickWeight $Chick
+diet &lt;- ChickWeight $Diet
+nlab1 &lt;- data.frame (time, chick,diet) 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>R studio | New Commands</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>dim(nlab1)                              
+# tells us the dimensions of the object 
+typeof (nlab1)
+# tells us the datatype 
+rm(nlab1)                               
+# removes the object nlab1 from workspace 
+ls() 
+# you shouldn’t find nlab1 among the workspace objects. 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Data Import and Export with R</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Read data from and write data to
+
+<ul>
+<li>CSV files</li>
+<li>EXCEL files</li>
+<li>ODBC databases</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Practice -1- Read and Write Data from csv file</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>var1 &lt;- 1:5
+var2 &lt;- (1:5)/10
+var3 &lt;- c(&quot;R&quot;, &quot;and&quot;, &quot;Data Mining&quot;, &quot;Examples&quot;, &quot;Case Studies&quot;)
+df1 &lt;- data.frame(var1, var2, var3)
+names(df1) &lt;- c(&quot;VarInt&quot;, &quot;VarReal&quot;, &quot;VarChar&quot;)
+# save to a csv file
+write.csv(df1, “dummmyData.csv&quot;, row.names = FALSE)
+# read from a csv file
+df2 &lt;- read.csv(&quot;dummmyData.csv&quot;)
+print(df2)
+</code></pre>
+
+<p><code>Note :</code> Check the working directory and ensure that you have write access to that directory. 
+You can check this with getwd() ;   </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Practice -2- Read and Write Data from Excel file</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>library(xlsx)
+write.xlsx(df2, “dummmyData.xlsx”, sheetName = &quot;sheet1&quot;, row.names = F)
+df3 &lt;- read.xlsx(xlsx.file, sheetName = &quot;sheet1&quot;)
+df3
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Read from Database</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Package <code>RODBC</code>: provides connection to ODBC databases.</p></li>
+<li><p>Function <code>odbcConnect()</code>: sets up a connection to database</p></li>
+<li><p><code>sqlQuery()</code>: sends an SQL query to the database</p></li>
+<li><p><code>odbcClose()</code> closes the connection.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Practice -3- Read from Database</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>library(RODBC)
+db &lt;- odbcConnect(dsn = &quot;servername&quot;, uid = &quot;userid&quot;,
+sql &lt;- &quot;SELECT * FROM lib.table WHERE ...&quot;
+myData &lt;- sqlQuery(db, sql, errors=TRUE)
+odbcClose(db)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Hypothesis Testing</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>A statistical <code>hypothesis</code> is an assumption about a population parameter. This assumption may or may not be true.</li>
+<li><code>Hypothesis testing</code> refers to the formal procedures used by statisticians to accept or reject statistical hypotheses.
+The basic concept of <code>hypothesis</code> testing is to form an <code>assertion</code> and test it with data
+
+<ul>
+<li><code>Null hypothesis (H0)</code> :There is no difference</li>
+<li><code>Alternate hypothesis (H1)</code> :There is a difference</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <article data-timings="">
+    <ul>
+<li><p>Suppose we are evaluating our marketing department’s incentive campaign that is trying to increase the amount of money that customers spend when they visit our online site. </p></li>
+<li><p>We ran a short experiment, where visitors to our site randomly received one of two incentive offers or got no offer at all.   </p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Generate the Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code> offers = sample(c (&quot;noffer&quot;, &quot;offer1&quot;, &quot;offer2&quot;), size=500, replace=T) 
+</code></pre>
+
+<p><code>Sample  ( x , size , replace=T/F)</code></p>
+
+<p>x: Either a vector of one or more elements from which to choose 
+size: A non negative integer indicating the number of items to choose 
+Replace :Should the sampling be with replacement </p>
+
+<pre><code>purchasesize = ifelse(offers==&quot;noffer&quot;, rlnorm(500, meanlog=log(25)), 
+ifelse(offers==&quot;offer1&quot;, rlnorm(500, meanlog=log(50)), rlnorm(500, meanlog=log(55)))) 
+
+offertest = data.frame(offer=offers, purchase_amt=purchasesize)
+offertest
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Examine the Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>summary(offertest)
+aggregate(x=offertest$purchase_amt, by=list(offertest$offer), FUN=&quot;mean&quot;) 
+</code></pre>
+
+<p>This aggregate command does the equivalent of the SQL command “SELECT avg(purchase_amt) FROM offertest GROUP BY offer”, </p>
+
+<h5>Results :</h5>
+
+<pre><code>##   Group.1        x
+## 1  noffer 35.74412
+## 2  offer1 83.45804
+## 3  offer2 90.22404
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <article data-timings="">
+    <p>Plot and determine how purchase size varies within the three groups:    </p>
+
+<pre><code class="r">boxplot(purchase_amt ~ as.factor(offers), data=offertest, log=&quot;y&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"></p>
+
+<ul>
+<li>The ‘log=”y”’ argument plots the y axis on the log scale. </li>
+</ul>
+
+<p><code>Q ]</code> Does it appear that making
+offers increases purchase 
+amount? </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Use aov() to do the ANOVA:</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>model = aov((purchase_amt ~ offers), data=offertest)
+</code></pre>
+
+<p>Aov (formula ,data)
+<code>Formula</code> :a symbolic description of the model to be fitted .
+<code>Data</code> :an optional data frame, list or environment </p>
+
+<pre><code>summary(model)  
+</code></pre>
+
+<p><code>p-value</code>: area under the tails of the appropriate student&#39;s distribution , if p-value is small (say &lt; 0.05), then reject the null hypothesis and assume that m1 &lt;&gt; m2
+m1 &amp; m2 are &quot;significantly different”</p>
+
+<p>F = measure for the between group variance divided by the within group variance</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Use aov(cont.)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><code>Q1]</code> What is the p-value and the F-value ? 
+<code>Q2]</code> Can we reject the null hypothesis ? </p>
+
+<pre><code class="r">model = aov((purchase_amt ~ offers), data=offertest)
+summary(model)  
+</code></pre>
+
+<pre><code>##              Df  Sum Sq Mean Sq F value   Pr(&gt;F)    
+## offers        2  274730  137365   16.21 1.51e-07 ***
+## Residuals   497 4210398    8472                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <article data-timings="">
+    <p>Use Tukey’s test to check all the differences of means:   </p>
+
+<p>Tukey&#39;s test: all pair-wise tests for difference of means</p>
+
+<pre><code>TukeyHSD(model)
+</code></pre>
+
+<p><code>Q]</code> Did offer1 and offer2 increase purchase size to different amounts (to the p&lt;0.05 significance level)?</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Tukeys Test (Cont.)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>p-value for offer2-offer1 &gt;0.0.5 , then accept null hypothesis , which means they have similar effect</p>
+
+<pre><code class="r">TukeyHSD(model)
+</code></pre>
+
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = (purchase_amt ~ offers), data = offertest)
+## 
+## $offers
+##                    diff       lwr      upr     p adj
+## offer1-noffer 47.713923  23.95393 71.47392 0.0000091
+## offer2-noffer 54.479924  29.99224 78.96761 0.0000007
+## offer2-offer1  6.766001 -16.38136 29.91336 0.7711191
+</code></pre>
+
+<p><code>Note :</code> appreciable difference bet. offer1(offer2) &amp; noffer No appreciable difference bet. offer1 &amp; offer2</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>Use the lattice package for density plot:</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>The lattice package makes it easy to split data into different groups to highlight the differences between the groups. Here, we split the purchase_amt data by offer, and plot the three offer-specific purchase_amt densityplots on the same graph. </p>
+
+<pre><code>library(lattice)   
+
+densityplot(~ purchase_amt, group=offers, data=offertest, auto.key=T)  
+</code></pre></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h4>Density Plot Result</h4>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <article data-timings="">
+    <p>Plot the Logarithms of the Data:    </p>
+
+<ul>
+<li>Because the data is so left-skewed, we may want to plot the logarithms of the data to more clearly see the differences in the distributions, and the different locations of the modes<br></li>
+</ul>
+
+<pre><code>densityplot(~log10(purchase_amt),group=offers,data=offertest,auto.key=T)    
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h4>Other Plots</h4>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">densityplot(~purchase_amt | offers, data=offertest)     
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h4>Other Plots</h4>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">densityplot(~log10(purchase_amt) | offers, data=offertest)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <article data-timings="">
+    <p>Generate the example data to perform a Hypothesis Test with manual calculations:    </p>
+
+<ul>
+<li><p>Hopefully, you won’t have to do this too often. Most statistical packages have functions that calculate a test statistic and evaluate it against the proper distribution, for the most common hypothesis tests. </p></li>
+<li><p>On occasion, you may need to calculate the p-values yourself. For our example, we will calculate the Student’s t-test for difference of means (unlike Welch’s test, Student’s t-test assumes identical variances), under the alternative hypothesis that the means are not equal .</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-27" style="background:;">
+  <article data-timings="">
+    <iframe src='slide27.png' width=800px height=200px>
+</iframe> 
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
+  <article data-timings="">
+    <p>Create a function to calculate the pooled variance, which is used in the Student’s t statistic:   </p>
+
+<pre><code class="r">x = rnorm(10) # distribution centered at 0 
+y = rnorm(10,2) # distribution centered at 2    
+pooled.var = function(x, y) { 
+nx = length(x) 
+ny = length(y) 
+stdx = sd(x) 
+stdy = sd(y) 
+num = (nx-1)*stdx^2 + (ny-1)*stdy^2 
+denom = nx+ny-2 # degrees of freedom 
+(num/denom) * (1/nx + 1/ny) 
+}   
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <hgroup>
+    <h2>Examine the data</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">mx = mean(x) 
+</code></pre>
+
+<pre><code class="r">my = mean(y) 
+</code></pre>
+
+<pre><code class="r">mx - my 
+</code></pre>
+
+<pre><code>## [1] -2.244543
+</code></pre>
+
+<pre><code class="r">pooled.var(x,y)     
+</code></pre>
+
+<pre><code>## [1] 0.3462188
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-30" style="background:;">
+  <article data-timings="">
+    <p>Calculate the t statistic for Student&#39;s t-test:     </p>
+
+<pre><code class="r">tstat = (mx - my)/sqrt(pooled.var(x,y)) 
+tstat 
+</code></pre>
+
+<pre><code>## [1] -3.814631
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-31" style="background:;">
+  <article data-timings="">
+    <p>Perform Student’s t-test directly and compare the results:    </p>
+
+<pre><code class="r">t.test(x, y, var.equal=T)   
+</code></pre>
+
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  x and y
+## t = -3.8146, df = 18, p-value = 0.001269
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -3.480733 -1.008353
+## sample estimates:
+##  mean of x  mean of y 
+## -0.2479934  1.9965491
+</code></pre>
+
+<p><code>Q]</code> Does t.test() give the same results? </p>
+
+<blockquote>
+<p>Yes , - 3.802185</p>
+</blockquote>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue dark nobackground" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>علم + عمل + أخلاق = حضارة</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-33" style="background:;">
+  <hgroup>
+    <h2>Thanks for coming!</h2>
+  </hgroup>
+  <article data-timings="">
+    <div align="center">
+<img class="decoded" src="phantoms.jpg" width=80% height=450>
+</div>
+
+<p><br>
+<em>Eslam Ali</em> <code>Data Scientist</code></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Hypothesis Tests and ANOVA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Agenda'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='R studio | New Commands'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='R studio | Practice'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='R studio | New Commands'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Data Import and Export with R'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Practice -1- Read and Write Data from csv file'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Practice -2- Read and Write Data from Excel file'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Read from Database'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Practice -3- Read from Database'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Hypothesis Testing'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='NA'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Generate the Data'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Examine the Data'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='NA'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Use aov() to do the ANOVA:'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Use aov(cont.)'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='NA'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Tukeys Test (Cont.)'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Use the lattice package for density plot:'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Density Plot Result'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='NA'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='NA'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Other Plots'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Other Plots'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='NA'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='NA'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='NA'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Examine the data'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='NA'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='NA'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='علم + عمل + أخلاق = حضارة'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Thanks for coming!'>
+         33
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
