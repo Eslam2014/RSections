@@ -27,10 +27,10 @@ install_github(pkgs, 'ramnathv', ref = 'dev')
 * Lab 4: Graphics in R (cont.) [Presentation](https://eslam2014.github.io/RSections/lab4)
 
 > ### Part II: Data Analytics using R
-    Lab 6: Hypothesis test with ANOVA
-    Lab 7: Linear Regression, Logistic Regression
-    Lab 8: Data Mining in R (K means Clustering , Associated Rule Mining) 
-    Lab 9: Data Mining In R cont.  (Time Series Modeling, Time Series Forecasting)
+* Lab 5: Hypothesis test with ANOVA Presentation](https://eslam2014.github.io/RSections/lab5)
+* Lab 6: Linear Regression, Logistic Regression
+* Lab 7: Data Mining in R (K means Clustering , Associated Rule Mining) 
+* Lab 8: Data Mining In R cont.  (Time Series Modeling, Time Series Forecasting)
 
 
 ### It contians the 4 labs Now but I'll keep it updated 
